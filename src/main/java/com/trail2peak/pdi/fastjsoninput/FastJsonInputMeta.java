@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.vfs.FileObject;
+import org.apache.commons.vfs2.FileObject;
 import org.pentaho.di.core.CheckResult;
 import org.pentaho.di.core.CheckResultInterface;
 import org.pentaho.di.core.Const;
@@ -16,7 +16,11 @@ import org.pentaho.di.core.fileinput.FileInputList;
 import org.pentaho.di.core.row.RowMetaInterface;
 import org.pentaho.di.core.row.ValueMeta;
 import org.pentaho.di.core.row.ValueMetaInterface;
+import org.pentaho.di.core.row.value.ValueMetaBoolean;
+import org.pentaho.di.core.row.value.ValueMetaDate;
 import org.pentaho.di.core.row.value.ValueMetaFactory;
+import org.pentaho.di.core.row.value.ValueMetaInteger;
+import org.pentaho.di.core.row.value.ValueMetaString;
 import org.pentaho.di.core.variables.VariableSpace;
 import org.pentaho.di.core.xml.XMLHandler;
 import org.pentaho.di.i18n.BaseMessages;
@@ -837,8 +841,8 @@ public class FastJsonInputMeta extends BaseStepMeta implements
 			FastJsonInputField field = inputFields[i];
 
 			int type = field.getType();
-			if (type == ValueMeta.TYPE_NONE) {
-				type = ValueMeta.TYPE_STRING;
+			if (type == ValueMetaInterface.TYPE_NONE) {
+				type = ValueMetaInterface.TYPE_STRING;
 			}
 			try {
 				ValueMetaInterface v = ValueMetaFactory.createValueMeta(
@@ -866,9 +870,7 @@ public class FastJsonInputMeta extends BaseStepMeta implements
 		}
 
 		if (includeFilename) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(filenameField),
-					ValueMeta.TYPE_STRING);
+			ValueMetaInterface v = new ValueMetaString(space.environmentSubstitute(filenameField));
 			v.setLength(250);
 			v.setPrecision(-1);
 			v.setOrigin(name);
@@ -876,9 +878,7 @@ public class FastJsonInputMeta extends BaseStepMeta implements
 		}
 
 		if (includeRowNumber) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(rowNumberField),
-					ValueMeta.TYPE_INTEGER);
+			ValueMetaInterface v = new ValueMetaInteger(space.environmentSubstitute(rowNumberField));
 			v.setLength(ValueMetaInterface.DEFAULT_INTEGER_LENGTH, 0);
 			v.setOrigin(name);
 			r.addValueMeta(v);
@@ -887,66 +887,55 @@ public class FastJsonInputMeta extends BaseStepMeta implements
 
 		if (getShortFileNameField() != null
 				&& getShortFileNameField().length() > 0) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(getShortFileNameField()),
-					ValueMeta.TYPE_STRING);
+			ValueMetaInterface v =
+				new ValueMetaString( space.environmentSubstitute( getShortFileNameField() ) );
 			v.setLength(100, -1);
 			v.setOrigin(name);
 			r.addValueMeta(v);
 		}
 		if (getExtensionField() != null && getExtensionField().length() > 0) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(getExtensionField()),
-					ValueMeta.TYPE_STRING);
+			ValueMetaInterface v =
+				new ValueMetaString( space.environmentSubstitute( getExtensionField() ) );
 			v.setLength(100, -1);
 			v.setOrigin(name);
 			r.addValueMeta(v);
 		}
 		if (getPathField() != null && getPathField().length() > 0) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(getPathField()),
-					ValueMeta.TYPE_STRING);
+			ValueMetaInterface v = new ValueMetaString( space.environmentSubstitute( getPathField() ) );
 			v.setLength(100, -1);
 			v.setOrigin(name);
 			r.addValueMeta(v);
 		}
 		if (getSizeField() != null && getSizeField().length() > 0) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(getSizeField()),
-					ValueMeta.TYPE_INTEGER);
+			ValueMetaInterface v = new ValueMetaInteger( space.environmentSubstitute( getSizeField() ) );
 			v.setOrigin(name);
 			v.setLength(9);
 			r.addValueMeta(v);
 		}
 		if (isHiddenField() != null && isHiddenField().length() > 0) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(isHiddenField()),
-					ValueMeta.TYPE_BOOLEAN);
+			ValueMetaInterface v =
+				new ValueMetaBoolean( space.environmentSubstitute( isHiddenField() ) );
 			v.setOrigin(name);
 			r.addValueMeta(v);
 		}
 
 		if (getLastModificationDateField() != null
 				&& getLastModificationDateField().length() > 0) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(getLastModificationDateField()),
-					ValueMeta.TYPE_DATE);
+			ValueMetaInterface v =
+				new ValueMetaDate( space.environmentSubstitute( getLastModificationDateField() ) );
 			v.setOrigin(name);
 			r.addValueMeta(v);
 		}
 		if (getUriField() != null && getUriField().length() > 0) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(getUriField()),
-					ValueMeta.TYPE_STRING);
+			ValueMetaInterface v = new ValueMetaString( space.environmentSubstitute( getUriField() ) );
 			v.setLength(100, -1);
 			v.setOrigin(name);
 			r.addValueMeta(v);
 		}
 
 		if (getRootUriField() != null && getRootUriField().length() > 0) {
-			ValueMetaInterface v = new ValueMeta(
-					space.environmentSubstitute(getRootUriField()),
-					ValueMeta.TYPE_STRING);
+			ValueMetaInterface v =
+				new ValueMetaString( space.environmentSubstitute( getRootUriField() ) );
 			v.setLength(100, -1);
 			v.setOrigin(name);
 			r.addValueMeta(v);

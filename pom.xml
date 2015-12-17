@@ -19,6 +19,7 @@
 
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
+		<dependency.pentaho-kettle.revision>6.0-SNAPSHOT</dependency.pentaho-kettle.revision>
 	</properties>
 
 	<repositories>
@@ -38,19 +39,19 @@
 		<dependency>
 			<groupId>pentaho-kettle</groupId>
 			<artifactId>kettle-core</artifactId>
-			<version>5.0.9</version>
+			<version>${dependency.pentaho-kettle.revision}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>pentaho-kettle</groupId>
 			<artifactId>kettle-engine</artifactId>
-			<version>5.0.9</version>
+			<version>${dependency.pentaho-kettle.revision}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>pentaho-kettle</groupId>
 			<artifactId>kettle-ui-swt</artifactId>
-			<version>5.0.9</version>
+			<version>${dependency.pentaho-kettle.revision}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
