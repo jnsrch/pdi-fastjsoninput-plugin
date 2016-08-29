@@ -17,9 +17,9 @@
 		<pdi.plugin.lib_name>fastjsoninput.jar</pdi.plugin.lib_name>
 		<pdi.plugin.includelibs>json-path-1.2.0.jar,json-smart-2.2.jar,asm-1.0.2.jar</pdi.plugin.includelibs>
 
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-		<dependency.pentaho-kettle.revision>6.0-SNAPSHOT</dependency.pentaho-kettle.revision>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<dependency.pentaho-kettle.revision>6.1-SNAPSHOT</dependency.pentaho-kettle.revision>
 	</properties>
 
 	<repositories>
